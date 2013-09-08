@@ -1,0 +1,49 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Terminal colours (after installing GNU coreutils)
+NM="\[\033[0;38m\]" #means no background and white lines
+HI="\[\033[0;37m\]" #change this for letter colors
+HII="\[\033[0;31m\]" #change this for letter colors
+SI="\[\033[0;33m\]" #this is for the current directory
+IN="\[\033[0m\]"
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+export PS1="$NM[$HI\u $SI\w$NM]$INii\$(parse_git_branch): "
+export PATH="/usr/local/bin:/usr/local/sbin:/Users/andwen/Programs/play-1.2.5:/Users/andwen/bin:$PATH"
+export PATH="$PATH:/Applications/dart-sdk/bin"
+export COUCH="http://localhost:5984"
+export JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
+
+umask 022
+
+# You may uncomment the following lines if you want `ls' to be colorized:
+alias ls='ls -aG'
+alias ll='ls -alhG'
+alias l='ls -lAG'
+
+# Some more alias to avoid making mistakes:
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+git_version() {
+  git --version | sed -e 's/.*\([0-9].[0-9].[0-9]\)/\1/'
+}
+
+if [ -f "/usr/local/Cellar/git/$(git_version)/etc/bash_completion.d/git-completion.bash" ]; then
+  . "/usr/local/Cellar/git/$(git_version)/etc/bash_completion.d/git-completion.bash"
+fi
+
+if [ -f "/usr/local/Cellar/git/$(git_version)/etc/bash_completion.d/git-prompt.sh" ]; then
+  . "/usr/local/Cellar/git/$(git_version)/etc/bash_completion.d/git-prompt.sh"
+fi
+
+. /usr/local/Library/Contributions/brew_bash_completion.sh
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
