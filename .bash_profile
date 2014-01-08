@@ -1,5 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
+source ~/.profile
+
 # Terminal colours (after installing GNU coreutils)
 NM="\[\033[0;38m\]" #means no background and white lines
 HI="\[\033[0;37m\]" #change this for letter colors
@@ -7,15 +9,16 @@ HII="\[\033[0;31m\]" #change this for letter colors
 SI="\[\033[0;33m\]" #this is for the current directory
 IN="\[\033[0m\]"
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+source './.git-colored-branch-status'
 
-export PS1="$NM[$HI\u $SI\w$NM]$INii\$(parse_git_branch): "
+MY_PS1="$NM[$HI\u $SU\w$NM]$IN"
+PROMPT_COMMAND='PS1="$MY_PS1$(git_prompt): "'
 export PATH="/usr/local/bin:/usr/local/sbin:/Users/andwen/Programs/play-1.2.5:/Users/andwen/bin:$PATH"
 export PATH="$PATH:/Applications/dart-sdk/bin"
 export COUCH="http://localhost:5984"
 export JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
 umask 022
 
@@ -46,4 +49,3 @@ fi
 
 . /usr/local/Library/Contributions/brew_bash_completion.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
