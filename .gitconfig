@@ -23,3 +23,5 @@
   default = current
 [merge]
   conflictstyle = diff3
+[branch]
+  autosetuprebase = always
