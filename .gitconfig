@@ -16,9 +16,9 @@
   pu = pull --rebase
   ru = remote update
   ci = commit
-        co = checkout
-        su = submodule update
-        lg = log --graph --format='%cd %C(yellow)%h%C(red bold)%d%Creset%C(cyan) [%cn]%Creset %s' --date=short --abbrev=10
+  co = checkout
+  su = submodule update
+  lg = log --graph --format='%cd %C(yellow)%h%C(red bold)%d%Creset%C(cyan) [%cn]%Creset %s' --date=short --abbrev=10
 [push]
   default = current
 [merge]
