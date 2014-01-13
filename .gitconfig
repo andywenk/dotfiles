@@ -8,7 +8,7 @@
 [log]
   date = local
 [core]
-  excludesfile = /Users/andwen/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [alias]
   st = status -sb
   br = branch -av
