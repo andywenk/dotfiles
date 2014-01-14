@@ -19,6 +19,7 @@
   co = checkout
   su = submodule update
   lg = log --graph --format='%cd %C(yellow)%h%C(red bold)%d%Creset%C(cyan) [%cn]%Creset %s' --date=short --abbrev=10
+  mb = "!mb() { git log -1 `git merge-base $1 HEAD`; }; mb"
 [push]
   default = current
 [merge]
